@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  
+  TripName="Trip-name";
+  TripTime="Trip-time";
+  TripDesc="Trip-desc";
+  TripPrice="Trip-price";
+
 }
