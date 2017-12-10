@@ -3,5 +3,10 @@ export interface Trip{
     price:number;
     duration:string;
     description:string;
-    
+    imageUrl:string;
+    state:boolean;
+}
+
+export interface TripMoney{
+    amount:number;
 }

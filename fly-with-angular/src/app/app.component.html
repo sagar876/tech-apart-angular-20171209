@@ -1,4 +1,4 @@
-<div id='stars'></div>
+ <div id='stars'></div>
 <div id='stars2'></div>   
 <div id='stars3'></div>
 <div class="container">
@@ -7,12 +7,24 @@
     
      <button (click)="showList()" class="btn add-trip-btn">+ Add a Trip</button> 
   </div>
-
+  <div class="money-form-container">
+      <div class="form-container">
+         <p>{{totalMoney}}</p> 
+          <!-- <input type="number" class="form-controlmb-2" ng-model="{{totalMoney}}}">  -->
+          <!-- <form class="form-inline" >
+            <label   >Total Money: </label>
+            
+          </form> -->
+      </div>
+      <div class="remaining-amount-container">
+        Remaining money to book trip <strong ></strong>
+      </div>
+  </div>
   <div *ngIf="isListVisible"  class="trips-list">
     <div  class="trip" *ngFor="let trip of trips">
       <div class="row">
         <div class="col-lg-2 col-md-3 col-sm-4 trip-image-container">
-          <img src="" class="trip-image">
+          <img src="{{trip.imageUrl}}" class="trip-image">
         </div>
         <div class="col-lg-10 col-md-9 col-sm-8 trip-info">
           <div> 
@@ -26,7 +38,13 @@
               {{trip.description}}
             </div>
             <div class="col-md-4">
-              <button class="btn btn-lg book-btn">Book Trip</button>
+              <!-- <div *ngIf="isBooked"></div> -->
+              <button  class="btn btn-lg book-btn" (click)="showBooked(trip)">{{ trip.state ?  'booked' : 'Book ticket' }}</button>
+            
+              <!-- </div> -->
+            <!-- <div *ngIf="!isBooked">
+              <button  class="btn btn-lg book-btn" (click)="showBooked()">Booked. Cancel Booking?</button>
+            </div>   -->
             </div>
           </div>
         </div>
@@ -34,13 +52,15 @@
     </div>
   </div>
 
+  
   <div *ngIf="!isListVisible">
-    <div class="container">
+     <div class="container"> 
       <div class="container form-container">
-        <form name="new-trip-form">
-          <div class="form-group col-md-12">
+        <form name="new-trip-form" [formGroup]=tripform>
+          <div class="form-group col-md-12" >
             <label class="col-form-label" for="formGroupTripName">Trip name</label>
-            <input type="text" class="form-control" id="formGroupTripName" placeholder="Enter name" >
+            <input type="text" class="form-control" id="formGroupTripName" placeholder="Enter name"  formControlName="name" required >
+            
             <small id="TripNameHelpBlock" class="form-text text-muted">
               It is best to limit the trip name to about 25 to 30 charatcters.
             </small>
@@ -49,30 +69,30 @@
             <label class="col-form-label" for="formGroupTripCost">Cost</label>
             <div class="input-group">
               <span class="input-group-addon">INR</span>
-              <input type="number" class="form-control" id="formGroupTripCost" >
+              <input type="number" class="form-control" id="formGroupTripCost" formControlName="price" >
             </div>
           </div>
           <div class="form-group col-md-12">
             <label class="col-form-label" for="formGroupDuration">Duration</label>
-            <input type="text" class="form-control" id="formGroupDuration" placeholder="Eg. 12 months" >
+            <input type="text" class="form-control" id="formGroupDuration" placeholder="Eg. 12 months" formControlName="duration">
           </div>
           <div class="form-group col-md-12">
             <label class="col-form-label" for="formGroupDescription">Description</label>
-            <textarea type="text" class="form-control" id="formGroupDescription" placeholder="Some description goes here..." ></textarea>
+            <textarea type="text" class="form-control" id="formGroupDescription" placeholder="Some description goes here..." formControlName="description"></textarea>
           </div>
           <div class="form-group col-md-12">
             <label class="col-form-label" for="formGroupTripImage">Trip image</label>
-            <input type="text" class="form-control" id="formGroupTripImage" placeholder="Add a trip image link" >
+            <input type="text" class="form-control" id="formGroupTripImage" placeholder="Add a trip image link" formControlName="imageUrl">
             <small id="TripNameHelpBlock" class="form-text text-muted">
               Please add a link to the image
             </small>
           </div>
           <div class="form-actions">
-            <button class="btn submit-btn" type="button">SUBMIT</button>
+            <button class="btn submit-btn" (click)="submitForm()" type="button" [disabled]="tripform.invalid" >SUBMIT</button>
           </div>
         </form>
       </div>
-    </div>
+    </div> 
   </div>
 
 </div>
