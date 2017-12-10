@@ -19,7 +19,7 @@ export class AppComponent {
       duration:"1200 years",
       description:"this is the description",
       imageUrl:"https://www.w3schools.com/angular/pic_angular.jpg",
-      state:false
+      state:true
     },
     { 
       name:"my-trip",
@@ -27,7 +27,7 @@ export class AppComponent {
       duration:"1200 years",
       description:"this is the description",
       imageUrl:"https://www.w3schools.com/angular/pic_angular.jpg",
-      state:false
+      state:true
     },
     { 
       name:"my-trip",
@@ -35,7 +35,7 @@ export class AppComponent {
       duration:"1200 years",
       description:"this is the description",
       imageUrl:"https://www.w3schools.com/angular/pic_angular.jpg",
-      state:false
+      state:true
     },
   ]
  
@@ -68,17 +68,19 @@ export class AppComponent {
   }
 
 
-totalMoney=1000;
-
+totalMoney=50000;
+remainingMoney=50000;
 isBooked = true;
 showBooked(trip){
-  this.isBooked= !this.isBooked;
+  trip.state= !trip.state;
   console.log(trip);
-  if(this.isBooked==false){
-  this.totalMoney= this.totalMoney-trip.price;
+  if(trip.state==false){
+  this.totalMoney= this.totalMoney+trip.price;
+  this.remainingMoney= this.remainingMoney-trip.price;
   }
   else{
-    this.totalMoney= this.totalMoney+trip.price;
+    this.totalMoney= this.totalMoney-trip.price;
+    this.remainingMoney= this.remainingMoney+trip.price;
   }
 //   tripmoney:Array<TripMoney>=
 //   [

@@ -9,15 +9,14 @@
   </div>
   <div class="money-form-container">
       <div class="form-container">
-         <p>{{totalMoney}}</p> 
-          <!-- <input type="number" class="form-controlmb-2" ng-model="{{totalMoney}}}">  -->
-          <!-- <form class="form-inline" >
+         <p>{{totalMoney}}</p>
+           <input type="number" class="form-controlmb-2">  
+           <!-- <form class="form-inline" > -->
             <label   >Total Money: </label>
-            
-          </form> -->
+          <!-- </form>  -->
       </div>
       <div class="remaining-amount-container">
-        Remaining money to book trip <strong ></strong>
+        Remaining money to book trip <strong >{{remainingMoney}}</strong>
       </div>
   </div>
   <div *ngIf="isListVisible"  class="trips-list">
